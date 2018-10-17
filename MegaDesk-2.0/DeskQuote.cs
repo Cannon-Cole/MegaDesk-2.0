@@ -10,6 +10,10 @@ namespace MegaDesk_4_ColeCannon
     class DeskQuote
     {
         private const string RUSH_FILE_NAME = @"../../assets/rushOrderPrices.txt";
+        public Desk desk { get; set; }
+        public string name { get; set; }
+        public DateTime quoteDate { get; set; }
+        public int priceQuote { get; set; }
 
 
         public static int getPrice(int height, int width, string material, string rush, int drawer)

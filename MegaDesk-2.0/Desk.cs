@@ -16,7 +16,7 @@ namespace MegaDesk_4_ColeCannon
         public int height { get; set; }
         public int width { get; set; }
         public int drawers { get; set; }
-        public int rush { get; set; }
+        public string rush { get; set; }
         public string material { get; set; }
     }
 

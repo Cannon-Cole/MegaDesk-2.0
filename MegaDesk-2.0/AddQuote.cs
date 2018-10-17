@@ -45,17 +45,23 @@ namespace MegaDesk_4_ColeCannon
                 Desk desk = new Desk();
                 Int32.TryParse(HeightInput.Text, out int height);
                 Int32.TryParse(HeightInput.Text, out int width);
-                Int32.TryParse(HeightInput.Text, out int rush);
+                //Int32.TryParse(HeightInput.Text, out int rush);
                 Int32.TryParse(HeightInput.Text, out int drawers);
 
                 desk.height = height;
                 desk.height = width;
                 desk.drawers = drawers;
-                desk.rush = rush;
+                desk.rush = RushCombo.Text;
                 desk.material = MaterialCombo.Text;
 
+                DeskQuote deskQuote = new DeskQuote();
+                deskQuote.desk = desk;
+                deskQuote.name = CustomerNameBox.Text;
+                deskQuote.quoteDate = DateTime.Now;
+                deskQuote.priceQuote = DeskQuote.getPrice(desk.height, desk.width, desk.material, desk.rush, desk.drawers);
 
-                string jsonDesk = JsonConvert.SerializeObject(desk);
+                string jsonDesk = JsonConvert.SerializeObject(deskQuote);
+
 
                 File.WriteAllText(@"../../assets/quotes.json", jsonDesk);
             //StreamWriter wr = new StreamWriter(@"../../assets/quotes.json", append: true);
