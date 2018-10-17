@@ -65,32 +65,36 @@ namespace MegaDesk_4_ColeCannon
                 deskQuotes.Add(deskQuote);
                 string jsonDesks = JsonConvert.SerializeObject(deskQuotes);
                 File.WriteAllText(@"../../assets/quotes.json", jsonDesks);
-            //StreamWriter wr = new StreamWriter(@"../../assets/quotes.json", append: true);
-            //try
-            //{
-            //    string rushtime = "None";
 
-            //    if (RushCombo.Text != "None")
-            //    { 
-            //        rushtime = RushCombo.Text.Split(null)[0];
-            //    }
+                var mainMenu = (MainMenu)Tag;
+                mainMenu.Show();
+                Close();
+                //StreamWriter wr = new StreamWriter(@"../../assets/quotes.json", append: true);
+                //try
+                //{
+                //    string rushtime = "None";
 
-            //    wr.WriteLine(CustomerNameBox.Text + "," + DateTime.Now.ToString("dd/MM/yyyy") + "," + HeightInput.Text + "," + WidthInput.Text + "," + MaterialCombo.Text + "," + rushtime + "," + DrawerCombo.Text + "," + DeskQuote.getPrice(int.Parse(HeightInput.Text), int.Parse(WidthInput.Text), MaterialCombo.Text, RushCombo.Text, int.Parse(DrawerCombo.Text)));
+                //    if (RushCombo.Text != "None")
+                //    { 
+                //        rushtime = RushCombo.Text.Split(null)[0];
+                //    }
 
-            //    QuoteAdded.Visible = true;
-              
-            //    NotificationTimer.Enabled = true;
-            //    NotificationTimer.Tick += NotificationTimer_Tick;
+                //    wr.WriteLine(CustomerNameBox.Text + "," + DateTime.Now.ToString("dd/MM/yyyy") + "," + HeightInput.Text + "," + WidthInput.Text + "," + MaterialCombo.Text + "," + rushtime + "," + DrawerCombo.Text + "," + DeskQuote.getPrice(int.Parse(HeightInput.Text), int.Parse(WidthInput.Text), MaterialCombo.Text, RushCombo.Text, int.Parse(DrawerCombo.Text)));
 
-            //}
-            //catch (Exception ex)
-            //{
-            //    Console.WriteLine("File write issue: " + ex.Message);
-            //}
-            //finally
-            //{
-            //    wr.Close();
-            //}
+                //    QuoteAdded.Visible = true;
+
+                //    NotificationTimer.Enabled = true;
+                //    NotificationTimer.Tick += NotificationTimer_Tick;
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    Console.WriteLine("File write issue: " + ex.Message);
+                //}
+                //finally
+                //{
+                //    wr.Close();
+                //}
             }
         }
 

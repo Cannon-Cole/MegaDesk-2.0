@@ -98,5 +98,10 @@ namespace MegaDesk_4_ColeCannon
         {
 
         }
+
+        private void SearchMaterialChange(object sender, EventArgs e)
+        {
+
+        }
     }
 }

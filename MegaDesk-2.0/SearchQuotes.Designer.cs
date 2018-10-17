@@ -76,7 +76,8 @@
             this.SearchMaterialCombo.Size = new System.Drawing.Size(178, 39);
             this.SearchMaterialCombo.TabIndex = 12;
             this.SearchMaterialCombo.Text = "Select";
-            this.SearchMaterialCombo.SelectedIndexChanged += new System.EventHandler(this.SearchMaterialCombo_SelectedIndexChanged);
+            this.SearchMaterialCombo.SelectedIndexChanged += new System.EventHandler(this.SearchBtn_Click);
+            this.SearchMaterialCombo.ValueMemberChanged += new System.EventHandler(this.SearchMaterialChange);
             // 
             // label3
             // 
