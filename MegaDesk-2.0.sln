@@ -14,7 +14,6 @@ Global
 		{C09668A5-182F-4707-BBAF-0E151E91C6FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C09668A5-182F-4707-BBAF-0E151E91C6FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C09668A5-182F-4707-BBAF-0E151E91C6FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C09668A5-182F-4707-BBAF-0E151E91C6FE}.Release|Any CPU.Build.0 = Release|Any CPUs
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
