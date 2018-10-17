@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,9 @@ namespace MegaDesk_4_ColeCannon
 {
     class DeskQuote
     {
+        private const string RUSH_FILE_NAME = @"../../assets/rushOrderPrices.txt";
+
+
         public static int getPrice(int height, int width, string material, string rush, int drawer)
         {
             int price = 200;
@@ -64,11 +68,34 @@ namespace MegaDesk_4_ColeCannon
                 days = 0;
             }
 
+            //Defualt values
             int[,] rushCost = {
-                { 60, 70, 80 },
-                { 40, 50, 60 },
-                { 30, 35, 40 }
-            };
+              { 60, 70, 80 },
+              { 40, 50, 60 },
+              { 30, 35, 40 }
+             };
+
+            try
+            {
+              //Load if file exist
+              if (File.Exists(RUSH_FILE_NAME))
+              {
+                using (StreamReader reader = new StreamReader(RUSH_FILE_NAME))
+                {
+                  for (int i=0; i<3; i++)
+                  {
+                    for (int j=0; j<3; j++)
+                    {
+                      string rushField = reader.ReadLine();
+                      Int32.TryParse(rushField, out rushCost[i, j]);
+                    }                    
+                  }
+                } 
+              }
+            } catch (Exception ex)
+            {
+              Console.WriteLine("Error loading rush quote prices " + ex);
+            }
 
             int index;
             int area = calculateSurfaceArea(height, width);
