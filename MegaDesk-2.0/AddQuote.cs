@@ -14,6 +14,7 @@ namespace MegaDesk_4_ColeCannon
     public partial class AddQuote : Form
     {
         public List<string> materialList = new List<string>();
+        DateTime date = new DateTime();
 
         public AddQuote()
         {
