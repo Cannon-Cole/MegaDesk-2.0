@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -51,30 +52,51 @@ namespace MegaDesk_4_ColeCannon
         private void SearchBtn_Click(object sender, EventArgs e)
         {
             SearchColumnDisplay.Items.Clear();
-            StreamReader re = new StreamReader(@"quotes.txt");
-            
+
             try
             {
-                while (!re.EndOfStream)
+                List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(File.ReadAllText(@"../../assets/quotes.json")) ?? new List<DeskQuote>();
+                foreach(DeskQuote deskQuote in deskQuotes) 
                 {
-                    string quote = re.ReadLine();
-                    string[] quoteProperties = quote.Split(',');
-
-                    if (quoteProperties[4] == SearchMaterialCombo.Text)
+                    if (deskQuote.desk.material.Equals(SearchMaterialCombo.Text)) 
                     {
-
-                        SearchColumnDisplay.Items.Add(new ListViewItem(new[] { quoteProperties[0], quoteProperties[1], quoteProperties[2] + "\"", quoteProperties[3] + "\"", quoteProperties[4], quoteProperties[5], quoteProperties[6], "$" + quoteProperties[7] }));
+                        SearchColumnDisplay.Items.Add(new ListViewItem(new[] { deskQuote.name, deskQuote.quoteDate.ToString("dd-MMM-yyyy"), deskQuote.desk.height.ToString() + "\"", deskQuote.desk.width.ToString() + "\"", deskQuote.desk.material, deskQuote.desk.rush, deskQuote.desk.drawers.ToString(), "$" + deskQuote.priceQuote }));
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception j)
             {
-                Console.WriteLine("File read issue: " + ex.Message);
+                Console.WriteLine(j.ToString());
             }
-            finally
-            {
-                re.Close();
-            }
+            //StreamReader re = new StreamReader(@"quotes.txt");
+            
+            //try
+            //{
+            //    while (!re.EndOfStream)
+            //    {
+            //        string quote = re.ReadLine();
+            //        string[] quoteProperties = quote.Split(',');
+
+            //        if (quoteProperties[4] == SearchMaterialCombo.Text)
+            //        {
+
+            //            SearchColumnDisplay.Items.Add(new ListViewItem(new[] { quoteProperties[0], quoteProperties[1], quoteProperties[2] + "\"", quoteProperties[3] + "\"", quoteProperties[4], quoteProperties[5], quoteProperties[6], "$" + quoteProperties[7] }));
+            //        }
+            //    }
+            //}
+            //catch(Exception ex)
+            //{
+            //    Console.WriteLine("File read issue: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    re.Close();
+            //}
+        }
+
+        private void SearchMaterialCombo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

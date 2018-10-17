@@ -60,10 +60,11 @@ namespace MegaDesk_4_ColeCannon
                 deskQuote.quoteDate = DateTime.Now;
                 deskQuote.priceQuote = DeskQuote.getPrice(desk.height, desk.width, desk.material, desk.rush, desk.drawers);
 
-                string jsonDesk = JsonConvert.SerializeObject(deskQuote);
 
-
-                File.WriteAllText(@"../../assets/quotes.json", jsonDesk);
+                List<DeskQuote> deskQuotes = JsonConvert.DeserializeObject<List<DeskQuote>>(File.ReadAllText(@"../../assets/quotes.json")) ?? new List<DeskQuote>();
+                deskQuotes.Add(deskQuote);
+                string jsonDesks = JsonConvert.SerializeObject(deskQuotes);
+                File.WriteAllText(@"../../assets/quotes.json", jsonDesks);
             //StreamWriter wr = new StreamWriter(@"../../assets/quotes.json", append: true);
             //try
             //{
