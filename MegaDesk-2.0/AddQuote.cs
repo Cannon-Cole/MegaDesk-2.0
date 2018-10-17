@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -41,32 +42,48 @@ namespace MegaDesk_4_ColeCannon
 
             if(validated)
             {
-            StreamWriter wr = new StreamWriter(@"quotes.txt", append: true);
-            try
-            {
-                string rushtime = "None";
+                Desk desk = new Desk();
+                Int32.TryParse(HeightInput.Text, out int height);
+                Int32.TryParse(HeightInput.Text, out int width);
+                Int32.TryParse(HeightInput.Text, out int rush);
+                Int32.TryParse(HeightInput.Text, out int drawers);
 
-                if (RushCombo.Text != "None")
-                { 
-                    rushtime = RushCombo.Text.Split(null)[0];
-                }
+                desk.height = height;
+                desk.height = width;
+                desk.drawers = drawers;
+                desk.rush = rush;
+                desk.material = MaterialCombo.Text;
 
-                wr.WriteLine(CustomerNameBox.Text + "," + DateTime.Now.ToString("dd/MM/yyyy") + "," + HeightInput.Text + "," + WidthInput.Text + "," + MaterialCombo.Text + "," + rushtime + "," + DrawerCombo.Text + "," + DeskQuote.getPrice(int.Parse(HeightInput.Text), int.Parse(WidthInput.Text), MaterialCombo.Text, RushCombo.Text, int.Parse(DrawerCombo.Text)));
 
-                QuoteAdded.Visible = true;
+                string jsonDesk = JsonConvert.SerializeObject(desk);
+
+                File.WriteAllText(@"../../assets/quotes.json", jsonDesk);
+            //StreamWriter wr = new StreamWriter(@"../../assets/quotes.json", append: true);
+            //try
+            //{
+            //    string rushtime = "None";
+
+            //    if (RushCombo.Text != "None")
+            //    { 
+            //        rushtime = RushCombo.Text.Split(null)[0];
+            //    }
+
+            //    wr.WriteLine(CustomerNameBox.Text + "," + DateTime.Now.ToString("dd/MM/yyyy") + "," + HeightInput.Text + "," + WidthInput.Text + "," + MaterialCombo.Text + "," + rushtime + "," + DrawerCombo.Text + "," + DeskQuote.getPrice(int.Parse(HeightInput.Text), int.Parse(WidthInput.Text), MaterialCombo.Text, RushCombo.Text, int.Parse(DrawerCombo.Text)));
+
+            //    QuoteAdded.Visible = true;
               
-                NotificationTimer.Enabled = true;
-                NotificationTimer.Tick += NotificationTimer_Tick;
+            //    NotificationTimer.Enabled = true;
+            //    NotificationTimer.Tick += NotificationTimer_Tick;
 
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("File write issue: " + ex.Message);
-            }
-            finally
-            {
-                wr.Close();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Console.WriteLine("File write issue: " + ex.Message);
+            //}
+            //finally
+            //{
+            //    wr.Close();
+            //}
             }
         }
 

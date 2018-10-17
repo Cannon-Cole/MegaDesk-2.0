@@ -13,11 +13,11 @@ namespace MegaDesk_4_ColeCannon
         public const int MIN_HEIGHT = 12;
         public const int MAX_HEIGHT = 48;
 
-        private int height { get; set; }
-        private int width { get; set; }
-        private int drawers { get; set; }
-        private int rush { get; set; }
-        private string material { get; set; }
+        public int height { get; set; }
+        public int width { get; set; }
+        public int drawers { get; set; }
+        public int rush { get; set; }
+        public string material { get; set; }
     }
 
     public enum Materials
